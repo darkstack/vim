@@ -1,7 +1,6 @@
-source ~/vimfiles/bundles.vim
-
 " Maximize on startup (Win32)
 if has("win32")
+    source ~/vimfiles/bundles.vim
     "autocmd GUIEnter * simalt ~x
     " Put swap files in temp
 
@@ -13,6 +12,8 @@ if has("win32")
     let g:molokai_original=1
     let g:Powerline_symbols="fancy"
 elseif has("unix")
+    source ~/.vim/bundles.vim
+   
     set guifont=Consolas\ for\ Powerline\ 9
     let g:Powerline_symbols="fancy"
     set t_Co=256
