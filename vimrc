@@ -116,3 +116,6 @@ inoremap <silent><C-A-Left> <ESC>:wincmd H<cr>
 inoremap <silent><C-A-Up> <ESC>:wincmd K<cr>
 inoremap <silent><C-A-Down> <ESC>:wincmd J<cr>
 "autocmd! BufNewFile,BufRead *.ts set filetype=javascript
+
+autocmd! BufNewFile,BufRead .plan set filetype=plan
+"
