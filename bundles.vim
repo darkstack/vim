@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 if has("win32")
-    set rtp+=~/vimfile/bundle/vundle/
+    set rtp+=~/vimfiles/bundle/vundle/
 elseif has("unix")
     set rtp+=~/.vim/bundle/vundle/
 endif
