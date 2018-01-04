@@ -13,18 +13,18 @@ if has("win32")
     let g:Powerline_symbols="fancy"
 elseif has("unix")
     source ~/.vim/bundles.vim
-   
-    set guifont=Consolas\ for\ Powerline\ 9
-    let g:Powerline_symbols="fancy"
+    let g:airline_powerline_fonts = 1
+    set grepprg=grep\ -nH
+    let g:molokai_original=1
+    let g:airline_theme='distinguished'
     set t_Co=256
-    let g:rehash256=1
 endif
 "set tab params
 set tabstop=4
 set shiftwidth=4
  
 " GUI and color scheme
-colorscheme molokai
+"colorscheme molokai
 set linespace=0
 set fillchars=""
 
