@@ -7,6 +7,7 @@ if has("win32")
     set directory=c:/windows/temp/vim//i
     behave mswin 
     " I have GNU Grep installed.
+    set t_Co=256    
     set grepprg=grep\ -nH
     set guifont=Consolas_for_Powerline_FixedD:h9
     let g:molokai_original=1
@@ -24,7 +25,7 @@ set tabstop=4
 set shiftwidth=4
  
 " GUI and color scheme
-"colorscheme molokai
+colorscheme molokai
 set linespace=0
 set fillchars=""
 
@@ -80,6 +81,7 @@ endif
 " NERDTree config
 let NERDTreeShowBookmarks=1
 nmap <F10> :NERDTreeToggle<CR>
+nmap <F11> :cd %:p:h<CR>
 
 " Quickfix mappings
 nmap <F8> :cnext<CR>
