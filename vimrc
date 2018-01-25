@@ -12,6 +12,8 @@ if has("win32")
     set guifont=Consolas_for_Powerline_FixedD:h9
     let g:molokai_original=1
     let g:Powerline_symbols="fancy"
+    map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+
 elseif has("unix")
     source ~/.vim/bundles.vim
     let g:airline_powerline_fonts = 1
