@@ -84,6 +84,7 @@ endif
 let NERDTreeShowBookmarks=1
 nmap <F10> :NERDTreeToggle<CR>
 nmap <F11> :cd %:p:h<CR>
+nmap <F9> execute ':s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g'<CR>
 
 " Quickfix mappings
 nmap <F8> :cnext<CR>
@@ -99,6 +100,10 @@ vmap <C-Insert> "*y<CR>
 vmap <C-Delete> "*d<CR>
 nmap <S-Insert> "*P<CR>
 vmap <S-Insert> "*P<CR>
+
+"Buffers
+nmap <C-PageUp> :bnext<CR>
+nmap <C-PageDown> :bprevious<CR>
 
 
 "alt -> and <- to cycle window panes
@@ -120,7 +125,11 @@ inoremap <silent><C-A-Right> <ESC>:wincmd L<cr>
 inoremap <silent><C-A-Left> <ESC>:wincmd H<cr>
 inoremap <silent><C-A-Up> <ESC>:wincmd K<cr>
 inoremap <silent><C-A-Down> <ESC>:wincmd J<cr>
-"autocmd! BufNewFile,BufRead *.ts set filetype=javascript
 
+
+
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windowus
+"autocmd! BufNewFile,BufRead *.ts set filetype=javascript
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 autocmd! BufNewFile,BufRead .plan set filetype=plan
 "
