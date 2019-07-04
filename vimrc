@@ -12,8 +12,11 @@ if has("win32")
     set guifont=Consolas_for_Powerline_FixedD:h9
     let g:molokai_original=1
     let g:Powerline_symbols="fancy"
-    map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-
+    if has("win64")
+        map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen_64.dll", "ToggleFullScreen", 0)<CR>
+    elseif has("win32")
+        map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    endif
 elseif has("unix")
     source ~/.vim/bundles.vim
     let g:airline_powerline_fonts = 1
@@ -72,11 +75,13 @@ set cmdheight=2
 set hidden
 
 " Wildcard ignores
-set wildignore=*.o,*.obj,*.a,*.lib,*.exe,*.pdb
+set wildignore=*.o,*.obj,*.a,*.lib,*.exe,*.pdb,node_module/**,*.spec.ts
 
 " Use The Silver Searcher when available
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --nogroup\ --nocolor 
+    
+    let g:ackprg = 'ag --vimgrep'
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 endif
 
@@ -126,7 +131,7 @@ inoremap <silent><C-A-Left> <ESC>:wincmd H<cr>
 inoremap <silent><C-A-Up> <ESC>:wincmd K<cr>
 inoremap <silent><C-A-Down> <ESC>:wincmd J<cr>
 
-
+command JSONP %!python -m json.tool 
 
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windowus
 "autocmd! BufNewFile,BufRead *.ts set filetype=javascript
