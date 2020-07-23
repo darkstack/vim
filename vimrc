@@ -89,7 +89,6 @@ endif
 let NERDTreeShowBookmarks=1
 nmap <F10> :NERDTreeToggle<CR>
 nmap <F11> :cd %:p:h<CR>
-nmap <F9> execute ':s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g'<CR>
 
 " Quickfix mappings
 nmap <F8> :cnext<CR>
@@ -130,10 +129,11 @@ inoremap <silent><C-A-Right> <ESC>:wincmd L<cr>
 inoremap <silent><C-A-Left> <ESC>:wincmd H<cr>
 inoremap <silent><C-A-Up> <ESC>:wincmd K<cr>
 inoremap <silent><C-A-Down> <ESC>:wincmd J<cr>
-
+command FormatBDD :s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g
 command JSONP %!python -m json.tool 
-
+command FormatXML :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windowus
+nmap <F9> :FormatBDD<CR>
 "autocmd! BufNewFile,BufRead *.ts set filetype=javascript
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 autocmd! BufNewFile,BufRead .plan set filetype=plan
