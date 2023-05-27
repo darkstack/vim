@@ -139,7 +139,11 @@ command JSONP %!python -m json.tool
 command FormatXML :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windowus
 nmap <F9> :FormatBDD<CR>
+
+set number 
+set relativenumber
+au FileType gitcommit setlocal tw=72
 "autocmd! BufNewFile,BufRead *.ts set filetype=javascript
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|Build)|(\.(swp|ico|git|svn))$'
 autocmd! BufNewFile,BufRead .plan set filetype=plan
 "
