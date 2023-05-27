@@ -1,29 +1,20 @@
-set nocompatible
-filetype off
-
-if has("win32")
-    set rtp+=~/vimfiles/bundle/vundle/
-elseif has("unix")
-    set rtp+=~/.vim/bundle/vundle/
-endif
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tomasr/molokai'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-sleuth'
-Bundle 'tpope/vim-repeat'
-Plugin 'tpope/vim-commentary'
-Bundle 'kien/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Bundle 'spolu/dwm.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'tikhomirov/vim-glsl'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'ap/vim-buftabline'
-Bundle 'leafgarland/typescript-vim'
-Plugin 'mileszs/ack.vim'
-filetype plugin indent on
+Plug 'gmarik/vundle'
+Plug 'scrooloose/nerdtree'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'spolu/dwm.vim'
+Plug 'godlygeek/tabular'
+Plug 'tikhomirov/vim-glsl'
+Plug 'jnwhiteh/vim-golang'
+Plug 'ap/vim-buftabline'
+Plug 'leafgarland/typescript-vim'
+Plug 'mileszs/ack.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}

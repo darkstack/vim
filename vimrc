@@ -1,3 +1,8 @@
+call plug#begin()
+source ~/.vim/bundles.vim
+call plug#end()
+
+
 " Maximize on startup (Win32)
 if has("win32")
     source ~/vimfiles/bundles.vim
