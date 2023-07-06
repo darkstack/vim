@@ -124,7 +124,9 @@ inoremap <silent><A-Right> <ESC>:wincmd l<CR>
 inoremap <silent><A-Left> <ESC>:wincmd h<CR>
 inoremap <silent><A-Up> <ESC>:wincmd k<CR>
 inoremap <silent><A-Down> <ESC>:wincmd j<CR>
- 
+
+nnoremap <silent><A-p> :call CocActionAsync('jumpDefinition')<CR>
+
 "ctrl + alt -> and <- move the window panes
 nnoremap <silent><C-A-Right> :wincmd L<cr>
 nnoremap <silent><C-A-Left> :wincmd H<cr>
@@ -134,6 +136,7 @@ inoremap <silent><C-A-Right> <ESC>:wincmd L<cr>
 inoremap <silent><C-A-Left> <ESC>:wincmd H<cr>
 inoremap <silent><C-A-Up> <ESC>:wincmd K<cr>
 inoremap <silent><C-A-Down> <ESC>:wincmd J<cr>
+command Flash :!make && make stflash
 command FormatBDD :s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g
 command JSONP %!python -m json.tool 
 command FormatXML :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
@@ -156,6 +159,17 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+
+
 
 function! CheckBackspace() abort
   let col = col('.') - 1
