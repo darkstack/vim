@@ -1,11 +1,8 @@
-call plug#begin()
-source ~/.vim/bundles.vim
-call plug#end()
-
-
 " Maximize on startup (Win32)
 if has("win32")
+    call plug#begin()
     source ~/vimfiles/bundles.vim
+    call plug#end()
     "autocmd GUIEnter * simalt ~x
     " Put swap files in temp
 
@@ -23,7 +20,9 @@ if has("win32")
         map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
     endif
 elseif has("unix")
+    call plug#begin()
     source ~/.vim/bundles.vim
+    call plug#end()
     let g:airline_powerline_fonts = 1
     set grepprg=grep\ -nH
     let g:molokai_original=1
