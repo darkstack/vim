@@ -25,7 +25,12 @@ elseif has("unix")
     call plug#end()
     let g:airline_powerline_fonts = 1
     set grepprg=grep\ -nH
-    let g:molokai_original=1
+    "let g:molokai_original=1
+    "let g:molokai_transparent = 1
+    "let g:molokai_alternate_comments = 1
+    " let g:rehash256 = 1
+    let g:gruvbox_plugin_hi_groups = 0
+    let g:gruvbox_transp_bg = 0
     let g:airline_theme='distinguished'
     set t_Co=256
 endif
@@ -34,9 +39,10 @@ set tabstop=4
 set shiftwidth=4
  
 " GUI and color scheme
-colorscheme molokai
-set linespace=0
-set fillchars=""
+set background=dark
+colorscheme gruvbox8_hard
+"set linespace=0
+"set fillchars=""
 
 " UTF-8!
 set encoding=utf-8
@@ -88,6 +94,8 @@ if executable("ag")
     let g:ackprg = 'ag --vimgrep'
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 endif
+" Leader key is not possible with a french keyboard
+let mapleader = ","
 
 " NERDTree config
 let NERDTreeShowBookmarks=1
@@ -159,6 +167,17 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+nnoremap <silent> <leader>i :call ShowDocumentation()<CR>   
+nmap <silent> <leader>j <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>k <Plug>(coc-diagnostic-next)
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction 
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -166,11 +185,19 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+map <F12> :call ToggleBg()<CR>
 
+function! ToggleBg() abort
+    if g:gruvbox_transp_bg == 1
+        let g:gruvbox_transp_bg = 0
+    else
+        let g:gruvbox_transp_bg = 1 
+    endif
+    colorscheme gruvbox8_hard
+    echow "Reloaded color map"
+endfunction
 
-
-
-function! CheckBackspace() abort
+function! CheckBackspace()
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
