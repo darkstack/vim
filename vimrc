@@ -1,43 +1,47 @@
 " Maximize on startup (Win32)
 if has("win32")
-    call plug#begin()
-    source ~/vimfiles/bundles.vim
-    call plug#end()
-    "autocmd GUIEnter * simalt ~x
-    " Put swap files in temp
+	call plug#begin()
+	source ~/vimfiles/bundles.vim
+	call plug#end()
+	"autocmd GUIEnter * simalt ~x
+	" Put swap files in temp
 
-    set directory=c:/windows/temp/vim//i
-    behave mswin 
-    " I have GNU Grep installed.
-    set t_Co=256    
-    set grepprg=grep\ -nH
-    set guifont=Consolas_for_Powerline_FixedD:h9
-    let g:molokai_original=1
-    let g:Powerline_symbols="fancy"
-    if has("win64")
-        map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen_64.dll", "ToggleFullScreen", 0)<CR>
-    elseif has("win32")
-        map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+	set directory=c:/windows/temp/vim//i
+	behave mswin 
+	" I have GNU Grep installed.
+	set t_Co=256    
+	set grepprg=grep\ -nH
+	set guifont=Consolas_for_Powerline_FixedD:h9
+	let g:molokai_original=1
+	let g:Powerline_symbols="fancy"
+	if has("win64")
+		map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen_64.dll", "ToggleFullScreen", 0)<CR>
+	elseif has("win32")
+		map <F12> <Esc>:call libcallnr($HOME."/vimfiles/gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+	endif
+
+    if executable("ag")
+        let $FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""' 
     endif
 elseif has("unix")
-    call plug#begin()
-    source ~/.vim/bundles.vim
-    call plug#end()
-    let g:airline_powerline_fonts = 1
-    set grepprg=grep\ -nH
-    "let g:molokai_original=1
-    "let g:molokai_transparent = 1
-    "let g:molokai_alternate_comments = 1
-    " let g:rehash256 = 1
-    let g:gruvbox_plugin_hi_groups = 0
-    let g:gruvbox_transp_bg = 0
-    let g:airline_theme='distinguished'
-    set t_Co=256
+	call plug#begin()
+	source ~/.vim/bundles.vim
+	call plug#end()
+	let g:airline_powerline_fonts = 1
+	set grepprg=grep\ -nH
+	"let g:molokai_original=1
+	"let g:molokai_transparent = 1
+	"let g:molokai_alternate_comments = 1
+	" let g:rehash256 = 1
+	let g:gruvbox_plugin_hi_groups = 0
+	let g:gruvbox_transp_bg = 0
+	let g:airline_theme='distinguished'
+	set t_Co=256
 endif
 "set tab params
 set tabstop=4
 set shiftwidth=4
- 
+
 " GUI and color scheme
 set background=dark
 colorscheme gruvbox8_hard
@@ -89,10 +93,9 @@ set wildignore=*.o,*.obj,*.a,*.lib,*.exe,*.pdb,node_module/**,*.spec.ts
 
 " Use The Silver Searcher when available
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor 
-    
-    let g:ackprg = 'ag --vimgrep'
-    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+	set grepprg=ag\ --nogroup\ --nocolor 
+	let g:ackprg = 'ag --vimgrep'
+	let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 endif
 " Leader key is not possible with a french keyboard
 let mapleader = ","
@@ -159,32 +162,32 @@ nmap <F9> :FormatBDD<CR>
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+			\ coc#pum#visible() ? coc#pum#next(1) :
+			\ CheckBackspace() ? "\<Tab>" :
+			\ coc#refresh()
 
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nnoremap <silent> <leader>i :call ShowDocumentation()<CR>   
 nmap <silent> <leader>j <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>k <Plug>(coc-diagnostic-next)
 
 function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
+	if CocAction('hasProvider', 'hover')
+		call CocActionAsync('doHover')
+	else
+		call feedkeys('K', 'in')
+	endif
 endfunction 
 
 function! CheckBackspace()
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " GoTo code navigation
@@ -203,16 +206,16 @@ let g:fzf_vim = {}
 let g:fzf_layout = { 'down': '40%' }                                                                          
 
 " Toogle BG on linux 
-map <F12> :call ToggleBg()<CR>
+inoremap <F12> :call ToggleBg()<CR>
 
 function! ToggleBg() abort
-    if g:gruvbox_transp_bg == 1
-        let g:gruvbox_transp_bg = 0
-    else
-        let g:gruvbox_transp_bg = 1 
-    endif
-    colorscheme gruvbox8_hard
-    echow "Reloaded color map"
+	if g:gruvbox_transp_bg == 1
+		let g:gruvbox_transp_bg = 0
+	else
+		let g:gruvbox_transp_bg = 1 
+	endif
+	colorscheme gruvbox8_hard
+	echow "Reloaded color map"
 endfunction
 
 
