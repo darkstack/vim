@@ -150,6 +150,9 @@ command FormatXML :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minid
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windowus
 nmap <F9> :FormatBDD<CR>
 
+
+" Coc.vim config
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -179,12 +182,27 @@ function! ShowDocumentation()
   endif
 endfunction 
 
+function! CheckBackspace()
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+
+" End of Coc.vim config 
+
+" FZF 
+nmap <C-p> :FZF<CR> 
+let g:fzf_vim = {}
+"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+let g:fzf_layout = { 'down': '40%' }                                                                          
+
+" Toogle BG on linux 
 map <F12> :call ToggleBg()<CR>
 
 function! ToggleBg() abort
@@ -197,10 +215,6 @@ function! ToggleBg() abort
     echow "Reloaded color map"
 endfunction
 
-function! CheckBackspace()
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 
 set number 
