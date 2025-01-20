@@ -196,6 +196,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <silent> gf <Plug>(coc-quickfix)
+nmap <silent> <F2> <Plug>(coc-rename)
 
 " End of Coc.vim config 
 
@@ -218,7 +220,7 @@ function! ToggleBg() abort
 	echow "Reloaded color map"
 endfunction
 
-
+let g:NERDTreeWinPos = "right"
 
 set number 
 set relativenumber
